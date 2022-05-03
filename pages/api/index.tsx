@@ -5,7 +5,7 @@ export default async function index(req: NextApiRequest, res: NextApiResponse) {
   const prisma = new PrismaClient({ log: ['query'] })
 
   try {
-    const user = await prisma.user.findMany()
+    const user = await prisma?.user.findMany() || []
     if (!user) {
       res.status(404)
       res.json({ error: 'User not found' })
