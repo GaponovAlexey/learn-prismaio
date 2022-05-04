@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:3000/api/')
@@ -11,9 +11,9 @@ export const getStaticProps = async () => {
 
 const Home = ({ data }) => {
   const { user } = data || []
-  console.log(data)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+
   const sendserver = async () => {
     await fetch('http://localhost:3000/api/create', {
       method: 'POST',
