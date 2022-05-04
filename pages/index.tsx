@@ -1,35 +1,19 @@
-import { PrismaClient } from '@prisma/client'
 import Head from 'next/head'
 import { useState } from 'react'
 
 export const getStaticProps = async () => {
-  const prisma = new PrismaClient({ log: ['query'] })
-  const users = await prisma.user.findMany()
-  // const result = await prisma.user.create({
-  //   data: {
-  //     name: 'Maydadyr',
-  //     email: 'moydadyssr@yahoo.com',
-  //     Post: {
-  //       create: {
-  //         title: 'newCreatePosts',
-  //       },
-  //     },
-  //   },
-  // })
-  // console.log(result)
-
-  await prisma.$disconnect()
+  const res = await fetch('http://localhost:3000/api/')
+  const data = await res.json()
   return {
-    props: { users },
+    props: { data },
   }
 }
 
-export default function Home(props) {
-  const { users, oneus } = props || []
-  const { Post } = oneus || []
-  console.log(Post)
-
-  const [email, setEmail] = useState('')
+const Home = ({data}) => {
+  const { user } = data || {}
+  const [email, setEmail] = useState()
+  console.log(data)
+  
 
   return (
     <div>
@@ -39,16 +23,15 @@ export default function Home(props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div style={{ textAlign: 'center' }}>
-        {Post && Post?.map((el) => <div>{el.title}</div>)}
+        {/* {result && result?.map((el) => <div>{el.title}</div>)} */}
         <h1>Hello Next.js</h1>
         <input
           type='text'
           value={email}
-          onChange={(el) => setEmail(el.target.value)}
+          onChange={(el: any) => setEmail(el.target.value)}
         />
-
         <div>
-          {users?.map((post) => (
+          {user?.map((post) => (
             <div key={post.id}>
               <h1>{post.name}</h1>
               <p>{post.email}</p>
@@ -61,3 +44,5 @@ export default function Home(props) {
     </div>
   )
 }
+
+export default Home
