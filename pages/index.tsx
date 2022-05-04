@@ -5,14 +5,29 @@ import { useState } from 'react'
 export const getStaticProps = async () => {
   const prisma = new PrismaClient({ log: ['query'] })
   const users = await prisma.user.findMany()
+  // const result = await prisma.user.create({
+  //   data: {
+  //     name: 'Maydadyr',
+  //     email: 'moydadyssr@yahoo.com',
+  //     Post: {
+  //       create: {
+  //         title: 'newCreatePosts',
+  //       },
+  //     },
+  //   },
+  // })
+  // console.log(result)
 
+  await prisma.$disconnect()
   return {
     props: { users },
   }
 }
 
 export default function Home(props) {
-  const { users } = props
+  const { users, oneus } = props || []
+  const { Post } = oneus || []
+  console.log(Post)
 
   const [email, setEmail] = useState('')
 
@@ -24,6 +39,7 @@ export default function Home(props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div style={{ textAlign: 'center' }}>
+        {Post && Post?.map((el) => <div>{el.title}</div>)}
         <h1>Hello Next.js</h1>
         <input
           type='text'
