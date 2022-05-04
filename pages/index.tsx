@@ -25,6 +25,9 @@ const Home = ({ data }) => {
         email,
       }),
     })
+    setEmail('')
+    setName('')
+    
   }
 
   return (
