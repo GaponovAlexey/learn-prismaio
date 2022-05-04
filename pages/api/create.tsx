@@ -3,23 +3,23 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const prisma = new PrismaClient({ log: ['query'] })
+  const user = await prisma.user.findMany()
 
   try {
-    const { six: sendSix } = req.body
-
+    const { email, name } = req.body
     const sixes = await prisma.user.create({
       data: {
-        email: sendSix.email,
-        name: sendSix.name,
+        email: email,
+        name: name,
       },
     })
-    
+    res.status(200).json({ sixes })
+
     if (!sixes) {
       res.status(404).json({ error: 'User not found' })
     }
-    
-    res.status(201).json({ sixes })
 
+    res.status(201).json({ sixes })
   } catch (error) {
     res.status(500)
     res.json({ error: error.message })

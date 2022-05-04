@@ -9,11 +9,23 @@ export const getStaticProps = async () => {
   }
 }
 
-const Home = ({data}) => {
-  const { user } = data || {}
-  const [email, setEmail] = useState()
+const Home = ({ data }) => {
+  const { user } = data || []
   console.log(data)
-  
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const sendserver = async () => {
+    await fetch('http://localhost:3000/api/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+      }),
+    })
+  }
 
   return (
     <div>
@@ -23,8 +35,12 @@ const Home = ({data}) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div style={{ textAlign: 'center' }}>
-        {/* {result && result?.map((el) => <div>{el.title}</div>)} */}
         <h1>Hello Next.js</h1>
+        <input
+          type='text'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <input
           type='text'
           value={email}
@@ -37,8 +53,7 @@ const Home = ({data}) => {
               <p>{post.email}</p>
             </div>
           ))}
-
-          <button>create</button>
+          <button onClick={sendserver}>create</button>
         </div>
       </div>
     </div>
