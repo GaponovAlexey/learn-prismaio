@@ -37,7 +37,7 @@ const Home = ({ data }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div style={{ textAlign: 'center' }}>
-        <h1>Hello Next.js</h1>
+        <h1>Hello Next.js | ts</h1>
         <input
           type='text'
           value={name}
