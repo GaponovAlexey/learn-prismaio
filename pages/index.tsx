@@ -27,7 +27,6 @@ const Home = ({ data }) => {
     })
     setEmail('')
     setName('')
-    
   }
 
   return (
@@ -49,6 +48,7 @@ const Home = ({ data }) => {
           value={email}
           onChange={(el: any) => setEmail(el.target.value)}
         />
+        <button onClick={sendserver}>create</button>
         <div>
           {user?.map((post) => (
             <div key={post.id}>
@@ -56,7 +56,6 @@ const Home = ({ data }) => {
               <p>{post.email}</p>
             </div>
           ))}
-          <button onClick={sendserver}>create</button>
         </div>
       </div>
     </div>
