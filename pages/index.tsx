@@ -10,7 +10,6 @@ const Home = ({ data }) => {
 
   const sendserver = async () => {
     await fetch('https://learn-prismaio.vercel.app/api/create', {
-    // await fetch('localhost:3000/api/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,8 +19,8 @@ const Home = ({ data }) => {
         email,
       }),
     })
-    setEmail('')
-    setName('')
+  //   setEmail('')
+  //   setName('')
   }
   return (
     <div>
