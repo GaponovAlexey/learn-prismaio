@@ -1,33 +1,33 @@
 import Head from 'next/head'
 import { useState } from 'react'
 
-// export const getStaticProps = async () => {
-//   const res = await fetch('http://localhost:3000/api/')
-//   const data = await res.json()
-//   return {
-//     props: { data },
-//   }
-// }
+export const getStaticProps = async () => {
+  const res = await fetch('learn-prismaio.vercel.app/api')
+  const data = await res.json()
+  return {
+    props: { data },
+  }
+}
 
 const Home = ({ data }) => {
   const { user } = data || []
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  // const sendserver = async () => {
-  //   await fetch('http://localhost:3000/api/create', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name,
-  //       email,
-  //     }),
-  //   })
-  //   setEmail('')
-  //   setName('')
-  // }
+  const sendserver = async () => {
+    await fetch('learn-prismaio.vercel.app/api/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+      }),
+    })
+    setEmail('')
+    setName('')
+  }
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Home = ({ data }) => {
           value={email}
           onChange={(el: any) => setEmail(el.target.value)}
         />
-        {/* <button onClick={sendserver}>create</button> */}
+        <button onClick={sendserver}>create</button>
         <div>
           {user && user?.map((post) => (
             <div key={post.id}>
