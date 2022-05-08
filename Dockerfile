@@ -1,4 +1,4 @@
-FROM node:16-alpine AS deps
+FROM node
 WORKDIR /learn-prismaio
 COPY . .
 RUN yarn install --frozen-lockfile
