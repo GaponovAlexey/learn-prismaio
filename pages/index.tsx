@@ -29,6 +29,7 @@ const Home = ({ data }) => {
     setName('')
   }
 
+  
   return (
     <div>
       <Head>
