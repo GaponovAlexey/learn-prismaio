@@ -7,20 +7,20 @@ const Home = ({ data }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
-  // const sendserver = async () => {
-  //   await fetch('https://learn-prismaio.vercel.app/api/create', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name,
-  //       email,
-  //     }),
-  //   })
-  //   setEmail('')
-  //   setName('')
-  // }
+  const sendserver = async () => {
+    await fetch('http://localhost:3000/api/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email,
+      }),
+    })
+    setEmail('')
+    setName('')
+  }
   return (
     <div>
       <Head>
@@ -40,7 +40,7 @@ const Home = ({ data }) => {
           value={email}
           onChange={(el: any) => setEmail(el.target.value)}
         />
-        {/* <button onClick={sendserver}>create</button> */}
+        <button onClick={sendserver}>create</button>
         <div>
           {user &&
             user?.map((post) => (
