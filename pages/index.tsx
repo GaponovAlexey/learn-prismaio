@@ -1,13 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
 
-export const getStaticProps = async () => {
-  const res = await fetch('learn-prismaio.vercel.app/api')
-  const data = await res.json()
-  return {
-    props: { data },
-  }
-}
+
 
 const Home = ({ data }) => {
   const { user } = data || []
@@ -29,7 +23,7 @@ const Home = ({ data }) => {
     setName('')
   }
 
-  
+
   return (
     <div>
       <Head>
@@ -64,3 +58,12 @@ const Home = ({ data }) => {
 }
 
 export default Home
+
+
+Home.getInitialProps = async () => {
+  const res = await fetch('learn-prismaio.vercel.app/api')
+  const data = await res.json()
+  return {
+    props: { data },
+  }
+}
