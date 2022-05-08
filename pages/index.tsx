@@ -58,7 +58,7 @@ const Home = ({ data }) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch('learn-prismaio.vercel.app/api')
+  const res = await fetch('https://learn-prismaio.vercel.app/api')
   const data = await res.json()
   return {
     props: { data },
