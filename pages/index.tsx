@@ -1,15 +1,16 @@
 import Head from 'next/head'
 import { useState } from 'react'
 
-
-
 const Home = ({ data }) => {
+  console.log(data)
+
   const { user } = data || []
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
   const sendserver = async () => {
-    await fetch('learn-prismaio.vercel.app/api/create', {
+    // await fetch('learn-prismaio.vercel.app/api/create', {
+    await fetch('localhost:3000/api/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,8 +23,6 @@ const Home = ({ data }) => {
     setEmail('')
     setName('')
   }
-
-
   return (
     <div>
       <Head>
@@ -45,25 +44,26 @@ const Home = ({ data }) => {
         />
         <button onClick={sendserver}>create</button>
         <div>
-          {user && user?.map((post) => (
-            <div key={post.id}>
-              <h1>{post.name}</h1>
-              <p>{post.email}</p>
-            </div>
-          ))}
+          {user &&
+            user?.map((post) => (
+              <div key={post.id}>
+                <h1>{post.name}</h1>
+                <p>{post.email}</p>
+              </div>
+            ))}
         </div>
       </div>
     </div>
   )
 }
 
-export default Home
-
-
-Home.getInitialProps = async () => {
+export const getStaticProps = async () => {
   const res = await fetch('learn-prismaio.vercel.app/api')
   const data = await res.json()
   return {
     props: { data },
   }
 }
+
+
+export default Home
