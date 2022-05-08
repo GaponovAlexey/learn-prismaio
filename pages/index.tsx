@@ -50,7 +50,7 @@ const Home = ({ data }) => {
         />
         <button onClick={sendserver}>create</button>
         <div>
-          {user?.map((post) => (
+          {user && user?.map((post) => (
             <div key={post.id}>
               <h1>{post.name}</h1>
               <p>{post.email}</p>
