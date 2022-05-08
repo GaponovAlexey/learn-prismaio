@@ -37,7 +37,7 @@ const Home = ({ data }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div style={{ textAlign: 'center' }}>
-        <h1>Hello Next.js | ts</h1>
+        <h1>Hello Next.js </h1>
         <input
           type='text'
           value={name}
@@ -48,7 +48,7 @@ const Home = ({ data }) => {
           value={email}
           onChange={(el: any) => setEmail(el.target.value)}
         />
-        <button onClick={sendserver}>create@</button>
+        <button onClick={sendserver}>create</button>
         <div>
           {user?.map((post) => (
             <div key={post.id}>
