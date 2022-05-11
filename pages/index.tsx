@@ -2,7 +2,6 @@ import Head from 'next/head'
 import { useState } from 'react'
 
 const Home = ({ data }) => {
-
   const { user } = data || []
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -21,6 +20,7 @@ const Home = ({ data }) => {
     setEmail('')
     setName('')
   }
+
   return (
     <div>
       <Head>
@@ -62,6 +62,5 @@ export const getStaticProps = async () => {
     props: { data },
   }
 }
-
 
 export default Home
