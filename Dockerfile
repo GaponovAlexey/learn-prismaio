@@ -1,7 +1,7 @@
 FROM node
 WORKDIR /learn-prismaio
-COPY . .
 RUN yarn install --frozen-lockfile
+COPY . .
 ENV PORT 3000
 VOLUME [ "/learn-prismaio" ]
 EXPOSE 3000
